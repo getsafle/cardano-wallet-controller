@@ -20,5 +20,21 @@ describe('Initialize wallet ', () => {
         console.log("wallet, ", wallet)
         assert(cardanoWallet.address !== null)
     })
+    
+    it("Should get privateKey ", async () => {
+        const wallet = await cardanoWallet.exportPrivateKey()
+        console.log("wallet, ", wallet)
+    })
+
+    it("Sign message", async () => {
+        const signedMessage1 = await cardanoWallet.signMessage(TESTING_MESSAGE_1)
+        console.log("Signed message 1: ", signedMessage1)
+
+        const signedMessage2 = await cardanoWallet.signMessage(TESTING_MESSAGE_2)
+        console.log("Signed message 2: ", signedMessage2)
+
+        const signedMessage3 = await cardanoWallet.signMessage(TESTING_MESSAGE_3)
+        console.log("Signed message 3: ", signedMessage3)
+    })
 
 })
