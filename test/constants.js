@@ -10,11 +10,13 @@ module.exports = {
 
     SIGN_TRANSACTION: {
         TRANSACTION_INPUT: [
-            { id: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef", value: 1 },
-            { id: "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210", value: 1 }
+            // { id: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef", value: 1 },
+            // { id: "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210", value: 1 }
+            { id: "021f619a9a0fc560c6c39576662d571ffbec931776d84f808b18940f39bb8e60", value: 1 }
         ],
         TRANSACTION_OUTPUT: [
-            { address: "Ae2tdPwUPEZCEhYAUVU7evPfQCJjyuwM6n81x6hSjU9TBMSy2YwZEVydssL", value: "1826205" }
+            { address: "2cWKMJemoBai8B2C2srT9H3JTws3asceaPGd1Ebqtw1Ht8LvA6tcHbd8Mkpo6arsfc9Ca", value: "100" }
+            // { address: "Ae2tdPwUPEZCEhYAUVU7evPfQCJjyuwM6n81x6hSjU9TBMSy2YwZEVydssL", value: "1826205" }
         ]
         // const inputs = [
         //     { pointer: { id: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef", index: 1 }, value: 1 },
@@ -24,7 +26,11 @@ module.exports = {
         //     { address: "Ae2tdPwUPEZCEhYAUVU7evPfQCJjyuwM6n81x6hSjU9TBMSy2YwZEVydssL", value: "1826205" }
         // ];
     },
-    cardano_network: {
+    CARDANO_NETWORK: {
         MAINNET: 'MAINNET',
-    }
+        TESTNET: 'TESTNET',
+    },
+    CARDANO_TRANSACTION: {
+        NATIVE_TRANSFER: "NATIVE_TRANSFER"
+    },
 }

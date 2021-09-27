@@ -5,5 +5,9 @@ module.exports = {
     },
     cardano_network: {
         MAINNET: 'MAINNET',
-    }
+        TESTNET: 'TESTNET',
+    },
+    cardano_transaction: {
+        NATIVE_TRANSFER: "NATIVE_TRANSFER"
+    },
 }

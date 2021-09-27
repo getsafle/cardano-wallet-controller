@@ -1,7 +1,9 @@
 const Cardano = require('cardano-wallet');
+const blockchainSettings = require('./utils/networkSettings')
+const { MAINNET } = require('../config/index')
 
-function addressFromMnemonic(mnemonic) {
-    const settings = Cardano.BlockchainSettings.mainnet();
+function addressFromMnemonic(mnemonic, network = MAINNET) {
+    const settings = blockchainSettings(network)
     const entropy = Cardano.Entropy.from_english_mnemonics(mnemonic);
     const wallet = Cardano.Bip44RootPrivateKey.recover(entropy, '');
     const account = wallet.bip44_account(Cardano.AccountIndex.new(0 | 0x80000000));

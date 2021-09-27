@@ -8,7 +8,9 @@ async function signTransaction(txnObj, network = MAINNET, key_prv) {
     const { inputArr, outputArr } = txnObj
     const settings = blockchainSettings(network)
    
-    const transaction = txnBuilder.buildTransaction(inputArr, outputArr)
+    const transaction = await txnBuilder.buildTransaction(inputArr, outputArr)
+
+    console.log("transaction ", transaction)
 
     // retrieve the prepared transaction from the previous example
     let transaction_finalizer = new Cardano.TransactionFinalized(transaction);

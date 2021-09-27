@@ -1,8 +1,12 @@
 const Cardano = require('cardano-wallet');
-const { MAINNET } = require('../../config/index')
+const { cardano_network: { TESTNET } } = require('../../config/index')
 
 function getSetting(network) {
-    if (network === MAINNET) {
+    console.log("network ", network)
+    if (network === TESTNET) {
+        const settings = Cardano.BlockchainSettings.from_json({ protocol_magic: 1179657 });
+        return settings;
+    } else {
         const settings = Cardano.BlockchainSettings.mainnet();
         return settings;
     }

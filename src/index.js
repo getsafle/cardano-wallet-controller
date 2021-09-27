@@ -1,7 +1,9 @@
 const Cardano = require('cardano-wallet');
 var lib = require('cardano-crypto.js')
-const CardanoWalletJs = require('cardano-wallet-js');
-const { cardano: { HD_WALLET } } = require('./config')
+var cardano_js_lib = require('cardano-js')
+const { WalletServer, Seed } = require('cardano-wallet-js');
+const CardanoCrypto = require('rust-cardano-crypto')
+const { cardano: { HD_WALLET }, cardano_transaction: { NATIVE_TRANSFER } } = require('./config')
 
 const { generateKeystore, signTransaction: signTxn } = require('./helper')
 
@@ -13,8 +15,8 @@ class ADAHdKeyring {
     this.address = null
   }
 
-  async generateWallet() {
-    const { wallet, address } = generateKeystore.addressFromMnemonic(this.mnemonic)
+  async generateWallet(network) {
+    const { wallet, address } = generateKeystore.addressFromMnemonic(this.mnemonic, network)
     this.wallet = wallet
     this.address = address
     return { address: this.address }
@@ -27,20 +29,22 @@ class ADAHdKeyring {
   }
 
   /**
-   * NATIVE_TXN : { data : {inputArr: [{id, value}], outputArr: [{address: , value}] }, txnType: NATIVE_TRANSFER }
+  //  * NATIVE_TRANSFER : { data : {inputArr: [{id, value}], outputArr: [{address: , value}] }, txnType: NATIVE_TRANSFER }
+   * NATIVE_TRANSFER : { data : {to, amount}, txnType: NATIVE_TRANSFER }
    *     
    */
   /**
    *  
-   * @param {object: NATIVE_TXN } transaction 
+   * @param {object: NATIVE_TRANSFER } transaction 
    * @param {string} connectionUrl | NETWORK = MAINNET 
    * @returns 
    */
   async signTransaction(transaction, connectionUrl) {
+    const { data: { to, amount }, txnType } = transaction
+
     const { wallet, address } = generateKeystore.addressFromMnemonic(this.mnemonic)
     const { privateKey } = generateKeystore.privateKeyFromMnemonic(this.mnemonic)
 
-    const { txnType } = transaction
     if (txnType === NATIVE_TRANSFER) {
       const txn = await signTxn(transaction.data, connectionUrl, privateKey)
       return { signedTransaction: txn }
