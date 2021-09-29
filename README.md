@@ -35,7 +35,6 @@ This function is used to sign a transaction off-chain and then send it to the ne
 
 1. ADA transfer:<br />
    Trasaction to transfer ADA from one wallet/address to another.<br />The transaction object is of the following type:
-
 ```
 TransactionObj: {
     data: {
@@ -45,9 +44,7 @@ TransactionObj: {
     txnType: NATIVE_TRANSFER // type constant
 }
 ```
-
 **parameters:**
-
 ```
 name: transaction,
 type: TransactionObj, // refer to the above trancationObj types.
@@ -57,25 +54,21 @@ type: string,
 default: MAINNET (undefined)
 optional
 ```
-
 **returns:** `{signedTransaction: string} hex_string of signed raw transaction`
 
 #### signMessage(message: _string_)
 
 This function is used to sign a message. <br />
 **parameters:**
-
 ```
 name: message
 type: string
 ```
-
 **returns:** `{signedMessage: string} // signed message hex string`
 
 #### getAccounts()
 
 This function is used to get the wallet address. <br />
-
 **parameters:** - <br />
 **returns:** `{address: object} // wallet address`
 
@@ -83,7 +76,6 @@ This function is used to get the wallet address. <br />
 
 This function is used send the signed transaction onto the chain. <br />
 **parameters:**
-
 ```
 name: rawTransaction, // signed raw transaction (got from signedTransaction())
 type: Buffer | UInt8Array
@@ -93,5 +85,4 @@ type: string,
 default: MAINNET (undefined)
 optional
 ```
-
 **returns:** `{transactionDetails : Object} // transaction details with transaction hash`
